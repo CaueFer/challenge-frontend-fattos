@@ -71,19 +71,19 @@ function TaskTableRow({ task, taskList, setTaskList }: TaskTableRowProps) {
       >
         <td
           data-no-dnd="true"
-          className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark md:pl-9 xl:pl-11"
+          className="touch-none border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark md:pl-9 xl:pl-11"
         >
           <h5 className="font-medium text-black dark:text-white">#{task.id}</h5>
         </td>
         <td
           data-no-dnd="true"
-          className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
+          className="touch-none border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
         >
           <p className="text-black dark:text-white">{task.name}</p>
         </td>
         <td
           data-no-dnd="true"
-          className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
+          className="touch-none border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
         >
           <div className="flex flex-row">
             {task.price >= 1000 && <Flame color="red" width={20} />}
@@ -96,13 +96,13 @@ function TaskTableRow({ task, taskList, setTaskList }: TaskTableRowProps) {
         </td>
         <td
           data-no-dnd="true"
-          className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
+          className="touch-none border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
         >
           <TaskStatus task={task} />
         </td>
         <td
           data-no-dnd="true"
-          className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
+          className="touch-none border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
         >
           <div
             className="flex items-center space-x-3.5 dark:text-white/85"

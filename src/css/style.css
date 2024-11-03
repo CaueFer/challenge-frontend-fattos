@@ -244,6 +244,11 @@ input[type="search"]::-webkit-search-cancel-button {
   display: none !important;
 }
 
+.customMobileScroll {
+  overflow-y: auto;
+  width: 100%;
+}
+
 .customMobileScroll::-webkit-scrollbar {
   width: 22px;
 }
