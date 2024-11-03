@@ -1,16 +1,22 @@
 "use client";
 
 import flatpickr from "flatpickr";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Portuguese } from "flatpickr/dist/l10n/pt.js";
 
 type DatePickerProps = {
   selectedDate: string | null;
   setSelectedDate: (date: string | null) => void;
-  deadlineRequired: boolean
+  deadlineRequired: boolean;
 };
 
-const DatePicker = ({ selectedDate, setSelectedDate,deadlineRequired }: DatePickerProps) => {
+const DatePicker = ({
+  selectedDate,
+  setSelectedDate,
+  deadlineRequired,
+}: DatePickerProps) => {
+  const datePickerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     flatpickr(".form-datepicker", {
       mode: "single",
@@ -31,8 +37,19 @@ const DatePicker = ({ selectedDate, setSelectedDate,deadlineRequired }: DatePick
     });
   }, []);
 
+  const handleDatePickerOpen = () => {
+    const datePickerRef = document.getElementById("swal2-html-container");
+
+    if (datePickerRef) {
+      datePickerRef.scrollTo({
+        top: datePickerRef.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <div>
+    <div ref={datePickerRef}>
       <div className="relative">
         <div className="pointer-events-none absolute inset-0 left-5 right-auto flex items-center ">
           <svg
@@ -50,6 +67,7 @@ const DatePicker = ({ selectedDate, setSelectedDate,deadlineRequired }: DatePick
         </div>
         <input
           disabled={!deadlineRequired}
+          onClick={() => handleDatePickerOpen()}
           className="form-datepicker w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 pl-11.5 font-normal outline-none transition focus:border-primary active:border-primary disabled:bg-gray-300/25 dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
           placeholder="dd/mm/yyyy"
           data-class="flatpickr-right"

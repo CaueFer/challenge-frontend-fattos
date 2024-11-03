@@ -57,7 +57,7 @@ const showAddTask = ({ setTaskList }: showAddTaskProps) => {
     showCancelButton: false,
     focusConfirm: false,
     customClass: {
-      popup: "bg-white dark:bg-boxdark ",
+      popup: "bg-white dark:bg-boxdark overflow-y-auto",
     },
     willOpen: () => {
       ReactDOM.render(
@@ -82,7 +82,7 @@ const showEditTaskForm = ({ id, setTaskList }: showEditTaskProps) => {
     showCancelButton: false,
     focusConfirm: false,
     customClass: {
-      popup: "bg-white dark:bg-boxdark ",
+      popup: "bg-white dark:bg-boxdark overflow-y-auto",
     },
     willOpen: () => {
       ReactDOM.render(
