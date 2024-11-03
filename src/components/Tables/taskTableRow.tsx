@@ -67,15 +67,24 @@ function TaskTableRow({ task, taskList, setTaskList }: TaskTableRowProps) {
         {...attributes}
         {...listeners}
         style={style}
-        className={`touch-none border border-gray-2 bg-white dark:border-gray-2/20 dark:bg-[#3c4855] ${task.price >= 1000 ? "bg-gradient-to-t from-white via-red/5 to-white dark:from-[#3c4855] dark:via-rose-400/5 dark:to-[#3c4855]" : ""}`}
+        className={`touch-none select-none border border-gray-2 bg-white dark:border-gray-2/20 dark:bg-[#3c4855] ${task.price >= 1000 ? "bg-gradient-to-t from-white via-red/5 to-white dark:from-[#3c4855] dark:via-rose-400/5 dark:to-[#3c4855]" : ""}`}
       >
-        <td className="border-b border-gray-300 px-4 py-5 pl-9 dark:border-gray-2/20 dark:border-strokedark xl:pl-11">
+        <td
+          data-no-dnd="true"
+          className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark md:pl-9 xl:pl-11"
+        >
           <h5 className="font-medium text-black dark:text-white">#{task.id}</h5>
         </td>
-        <td className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark">
+        <td
+          data-no-dnd="true"
+          className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
+        >
           <p className="text-black dark:text-white">{task.name}</p>
         </td>
-        <td className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark">
+        <td
+          data-no-dnd="true"
+          className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
+        >
           <div className="flex flex-row">
             {task.price >= 1000 && <Flame color="red" width={20} />}
             <p
@@ -85,10 +94,16 @@ function TaskTableRow({ task, taskList, setTaskList }: TaskTableRowProps) {
             </p>
           </div>
         </td>
-        <td className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark">
+        <td
+          data-no-dnd="true"
+          className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
+        >
           <TaskStatus task={task} />
         </td>
-        <td className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark">
+        <td
+          data-no-dnd="true"
+          className="border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
+        >
           <div
             className="flex items-center space-x-3.5 dark:text-white/85"
             data-no-dnd="true"
@@ -117,7 +132,7 @@ function TaskTableRow({ task, taskList, setTaskList }: TaskTableRowProps) {
               </svg>
             </button>
             <button
-              className="non-draggable hover:text-primary"
+              className=" hover:text-primary"
               onPointerDown={(e) => e.stopPropagation()}
               onClick={() => {
                 handleDelete(task.id);

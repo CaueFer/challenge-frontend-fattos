@@ -18,14 +18,14 @@ export default function DefaultLayout({
         {/* <!-- ===== Sidebar End ===== --> */}
 
         {/* <!-- ===== Content Area Start ===== --> */}
-        <div className="relative flex min-h-screen flex-1 flex-col lg:ml-72.5">
+        <div className="max-w-screen relative flex min-h-screen flex-1 flex-col lg:ml-72.5 overflow-hidden">
           {/* <!-- ===== Header Start ===== --> */}
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           {/* <!-- ===== Header End ===== --> */}
 
           {/* <!-- ===== Main Content Start ===== --> */}
-          <main className="relative">
-            <div className="mx-auto h-full max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+          <main className="max-w-screen relative">
+            <div className="max-w-screen relative mx-auto h-full p-4 md:p-6 2xl:p-10">
               {children}
             </div>
           </main>
