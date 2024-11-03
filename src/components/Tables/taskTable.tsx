@@ -22,6 +22,7 @@ import {
 import TaskTableRow from "./taskTableRow";
 import Image from "next/image";
 import Alerts from "../alerts/alerts";
+import SimpleBar from "simplebar-react";
 
 const TaskTable = () => {
   const [taskList, setTaskList] = useState<ITask[]>([]);
@@ -160,49 +161,51 @@ const TaskTable = () => {
       {isLoading ? (
         <TableSkeleton />
       ) : taskList.length > 0 ? (
-        <div className="customMobileScroll relative max-w-full overflow-x-auto overflow-y-auto">
-          <DndContext
-            sensors={sensors}
-            onDragEnd={handleDragEnd}
-            collisionDetection={closestCorners}
-          >
-            <table className="min-w-full max-w-full table-auto overflow-hidden">
-              <thead>
-                <tr className="border border-gray-2 bg-gray-2 text-left dark:border-gray-2/20 dark:bg-meta-4">
-                  <th className="px-4 py-4 font-medium text-black dark:text-white md:min-w-[220px] md:pl-9 xl:pl-11">
-                    ID
-                  </th>
-                  <th className="px-4 py-4 font-medium text-black dark:text-white md:min-w-[150px]">
-                    Nome
-                  </th>
-                  <th className="px-4 py-4 font-medium text-black dark:text-white md:min-w-[120px]">
-                    Custo
-                  </th>
-                  <th className="px-4 py-4 font-medium text-black dark:text-white">
-                    Data Limite
-                  </th>
-                  <th className="px-4 py-4 font-medium text-black dark:text-white">
-                    Opções
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <SortableContext
-                  items={taskList}
-                  strategy={verticalListSortingStrategy}
-                >
-                  {taskList.map((task, index) => (
-                    <TaskTableRow
-                      task={task}
-                      key={index}
-                      taskList={taskList}
-                      setTaskList={setTaskList}
-                    />
-                  ))}
-                </SortableContext>
-              </tbody>
-            </table>
-          </DndContext>
+        <div className="relative max-w-full">
+          <SimpleBar style={{ height: "auto", width: "100%" }}>
+            <DndContext
+              sensors={sensors}
+              onDragEnd={handleDragEnd}
+              collisionDetection={closestCorners}
+            >
+              <table className="min-w-full max-w-full table-auto overflow-hidden">
+                <thead>
+                  <tr className="border border-gray-2 bg-gray-2 text-left dark:border-gray-2/20 dark:bg-meta-4">
+                    <th className="px-4 py-4 font-medium text-black dark:text-white md:min-w-[220px] md:pl-9 xl:pl-11">
+                      ID
+                    </th>
+                    <th className="px-4 py-4 font-medium text-black dark:text-white md:min-w-[150px]">
+                      Nome
+                    </th>
+                    <th className="px-4 py-4 font-medium text-black dark:text-white md:min-w-[120px]">
+                      Custo
+                    </th>
+                    <th className="px-4 py-4 font-medium text-black dark:text-white">
+                      Data Limite
+                    </th>
+                    <th className="px-4 py-4 font-medium text-black dark:text-white">
+                      Opções
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <SortableContext
+                    items={taskList}
+                    strategy={verticalListSortingStrategy}
+                  >
+                    {taskList.map((task, index) => (
+                      <TaskTableRow
+                        task={task}
+                        key={index}
+                        taskList={taskList}
+                        setTaskList={setTaskList}
+                      />
+                    ))}
+                  </SortableContext>
+                </tbody>
+              </table>
+            </DndContext>
+          </SimpleBar>
         </div>
       ) : (
         <div className="flex h-full w-full items-start justify-center bg-white text-center drop-shadow-md dark:bg-boxdark">
