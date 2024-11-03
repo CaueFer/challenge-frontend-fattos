@@ -1,7 +1,7 @@
 "use client";
 
 import { ITask } from "@/types/task";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TableSkeleton from "./tableSkeleton";
 import {
   closestCenter,
@@ -22,9 +22,11 @@ import {
 import TaskTableRow from "./taskTableRow";
 import Image from "next/image";
 import Alerts from "../alerts/alerts";
-import SimpleBar from "simplebar-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const TaskTable = () => {
+  const scrollTasksDiv = useRef<HTMLDivElement>(null);
+
   const [taskList, setTaskList] = useState<ITask[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -114,9 +116,21 @@ const TaskTable = () => {
     }),
   );
 
+  const scrollLeft = () => {
+    if (scrollTasksDiv.current) {
+      scrollTasksDiv.current.scrollBy({ left: -60, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollTasksDiv.current) {
+      scrollTasksDiv.current.scrollBy({ left: 60, behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="max-w-full rounded-sm border border-stroke bg-white px-5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5">
-      <div className="flex flex-row justify-between gap-4 py-4">
+    <div className="relative max-h-[calc(100vh-180px)] max-w-full overflow-y-clip rounded-sm border border-stroke bg-white px-5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5">
+      <div className="flex flex-row justify-between gap-4 pb-4">
         <button
           onClick={() => {
             fetchTasks();
@@ -161,15 +175,18 @@ const TaskTable = () => {
       {isLoading ? (
         <TableSkeleton />
       ) : taskList.length > 0 ? (
-        <div className="relative max-w-full">
-          <SimpleBar style={{ height: "auto", width: "100%" }}>
+        <div className="flex flex-col">
+          <div
+            className="relative max-h-[calc(100vh-345px)] max-w-full overflow-auto"
+            ref={scrollTasksDiv}
+          >
             <DndContext
               sensors={sensors}
               onDragEnd={handleDragEnd}
               collisionDetection={closestCorners}
             >
-              <table className="min-w-full max-w-full table-auto overflow-hidden">
-                <thead>
+              <table className=" min-w-full max-w-full table-auto overflow-hidden">
+                <thead className="sticky top-0">
                   <tr className="border border-gray-2 bg-gray-2 text-left dark:border-gray-2/20 dark:bg-meta-4">
                     <th className="px-4 py-4 font-medium text-black dark:text-white md:min-w-[220px] md:pl-9 xl:pl-11">
                       ID
@@ -205,7 +222,15 @@ const TaskTable = () => {
                 </tbody>
               </table>
             </DndContext>
-          </SimpleBar>
+          </div>
+          <div className="mt-4 flex items-center lg:hidden">
+            <button onClick={scrollLeft} className="mr-2">
+              <ChevronLeft size={40} />
+            </button>
+            <button onClick={scrollRight}>
+              <ChevronRight size={40} />
+            </button>
+          </div>
         </div>
       ) : (
         <div className="flex h-full w-full items-start justify-center bg-white text-center drop-shadow-md dark:bg-boxdark">
