@@ -4,6 +4,7 @@ import AddTaskForm from "../forms/addTaskForm";
 import { Dispatch, SetStateAction } from "react";
 import { ITask } from "@/types/task";
 import EditTaskForm from "../forms/editTaskForm";
+import { createRoot } from "react-dom/client";
 
 const showInfo = (title: string, text: string) => {
   Swal.fire({
@@ -60,9 +61,9 @@ const showAddTask = ({ setTaskList }: showAddTaskProps) => {
       popup: "bg-white dark:bg-boxdark overflow-y-auto",
     },
     willOpen: () => {
-      ReactDOM.render(
+      const root = createRoot(container);
+      root.render(
         <AddTaskForm onClose={() => Swal.close()} setTaskList={setTaskList} />,
-        container,
       );
     },
   });
@@ -85,13 +86,13 @@ const showEditTaskForm = ({ id, setTaskList }: showEditTaskProps) => {
       popup: "bg-white dark:bg-boxdark overflow-y-auto",
     },
     willOpen: () => {
-      ReactDOM.render(
+      const root = createRoot(container);
+      root.render(
         <EditTaskForm
           onClose={() => Swal.close()}
           id={id}
           setTaskList={setTaskList}
         />,
-        container,
       );
     },
   });

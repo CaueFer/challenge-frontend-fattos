@@ -94,7 +94,7 @@ function AddTaskForm({ onClose, setTaskList }: AddTaskFormProps) {
 
   useEffect(() => {
     if (selectedDate) setValue("deadline", selectedDate);
-  }, [selectedDate]);
+  }, [selectedDate, setValue]);
 
   return (
     <div className="rounded-sm  bg-white dark:bg-boxdark">
@@ -232,7 +232,7 @@ function AddTaskForm({ onClose, setTaskList }: AddTaskFormProps) {
                     cy="12"
                     r="10"
                     stroke="currentColor"
-                    stroke-width="4"
+                    strokeWidth="4"
                   ></circle>
                   <path
                     className="opacity-75"
