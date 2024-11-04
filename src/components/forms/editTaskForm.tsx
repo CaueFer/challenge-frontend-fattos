@@ -100,8 +100,10 @@ function EditTaskForm({ onClose, setTaskList, id }: EditTaskFormProps) {
 
     data = {
       ...data,
-      price: deadlineRequired ? undefined : data.price,
+      price: !priceRequired ? undefined : data.price,
     };
+
+    console.log(data);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/task/${id}`,

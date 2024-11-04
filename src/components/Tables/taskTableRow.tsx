@@ -110,6 +110,7 @@ function TaskTableRow({ task, taskList, setTaskList }: TaskTableRowProps) {
           >
             <button
               onPointerDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
               onClick={() => {
                 handleEdit(task.id);
               }}
@@ -134,6 +135,7 @@ function TaskTableRow({ task, taskList, setTaskList }: TaskTableRowProps) {
             <button
               className=" hover:text-primary"
               onPointerDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
               onClick={() => {
                 handleDelete(task.id);
               }}
