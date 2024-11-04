@@ -9,9 +9,13 @@ import { ITask } from "@/types/task";
 import Alerts from "../alerts/alerts";
 
 const addTaskSchema = z.object({
-  name: z.string().min(4, { message: "O nome está muito simples" }).max(20, {
-    message: "O nome da tarefa não pode ter mais de 20 caracteres",
-  }),
+  name: z
+    .string()
+    .trim()
+    .min(4, { message: "O nome está muito simples" })
+    .max(20, {
+      message: "O nome da tarefa não pode ter mais de 20 caracteres",
+    }),
   price: z.number().min(0, "Preço deve ser um número positivo"),
   deadline: z
     .string()
@@ -48,6 +52,7 @@ function AddTaskForm({ onClose, setTaskList }: AddTaskFormProps) {
 
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
+
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/task`,

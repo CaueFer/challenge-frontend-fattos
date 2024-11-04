@@ -105,7 +105,7 @@ function TaskTableRow({ task, taskList, setTaskList }: TaskTableRowProps) {
           className="touch-none border-b border-gray-300 px-4 py-5 dark:border-gray-2/20 dark:border-strokedark"
         >
           <div
-            className="flex items-center space-x-3.5 dark:text-white/85"
+            className="flex items-center space-x-3.5 dark:text-white/85 touch-none"
             data-no-dnd="true"
           >
             <button

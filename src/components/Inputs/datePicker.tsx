@@ -18,7 +18,10 @@ const DatePicker = ({
   const datePickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+
     flatpickr(".form-datepicker", {
+      disableMobile: true,
       mode: "single",
       static: true,
       monthSelectorType: "static",
@@ -70,7 +73,7 @@ const DatePicker = ({
           onClick={() => handleDatePickerOpen()}
           className="form-datepicker w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 pl-11.5 font-normal outline-none transition focus:border-primary active:border-primary disabled:bg-gray-300/25 dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
           placeholder="dd/mm/yyyy"
-          data-class="flatpickr-right"
+          data-class="flatpickr-left"
         />
       </div>
     </div>
